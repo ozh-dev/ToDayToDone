@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ToDayToDone</string>
+    <string name="add_btn">Add</string>
+    <string name="add_hint">What we have to do?</string>
 </resources>
