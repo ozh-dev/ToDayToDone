@@ -32,5 +32,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <ru.ozh.application.view.CapsuleView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cv_is_stroke="true"
+        app:cv_color="@color/gray_"/>
+
+    <ru.ozh.application.view.CapsuleView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cv_color="@color/red"/>
+
+    <ru.ozh.application.view.CapsuleView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cv_color="@color/green"/>
+
+    <ru.ozh.application.view.CapsuleView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:cv_color="@color/gray"/>
+
 
 </LinearLayout>
