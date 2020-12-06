@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -32,26 +32,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ru.ozh.application.view.CapsuleView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cv_is_stroke="true"
-        app:cv_color="@color/gray_"/>
+    <ru.ozh.application.view.ColorChooseView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:elevation="8dp"
+        android:layout_gravity="bottom"
+        android:translationX="-75dp"
+        android:translationY="75dp"
+        android:background="@drawable/bg_capsule_btn_shape">
 
-    <ru.ozh.application.view.CapsuleView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cv_color="@color/red"/>
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:tag="ignore"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_baseline_close_24"/>
 
-    <ru.ozh.application.view.CapsuleView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cv_color="@color/green"/>
+        <ru.ozh.application.view.CapsuleView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cv_color="@color/gray"/>
 
-    <ru.ozh.application.view.CapsuleView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:cv_color="@color/gray"/>
+        <ru.ozh.application.view.CapsuleView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cv_color="@color/petroleum_blue"/>
 
+        <ru.ozh.application.view.CapsuleView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cv_color="@color/red"/>
 
-</LinearLayout>
+    </ru.ozh.application.view.ColorChooseView>
+
+</FrameLayout>

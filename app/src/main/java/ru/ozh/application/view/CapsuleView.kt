@@ -31,6 +31,8 @@ class CapsuleView @JvmOverloads constructor(
         initAttrs()
         background = ResourcesCompat.getDrawable(resources, R.drawable.bg_capsule_btn_borderless, context.theme)
         paint.strokeWidth = strokeWidth
+
+        isClickable = true
     }
 
     override fun onDraw(canvas: Canvas) {
