@@ -8,23 +8,10 @@
     android:orientation="vertical"
     tools:context=".screen.TasksActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roboto Font"
-        android:textAppearance="@style/Text.Regular" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roboto Font"
-        android:textAppearance="@style/Text.Medium" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roboto Font"
-        android:textAppearance="@style/Text.Light" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasks_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <include layout="@layout/layout_add_bar" />
 

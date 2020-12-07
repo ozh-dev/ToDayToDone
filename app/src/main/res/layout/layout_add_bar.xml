@@ -22,8 +22,8 @@
         android:layout_toStartOf="@id/add_task_btn"
         android:layout_toEndOf="@id/open_priority_btn"
         android:background="@null"
-        android:singleLine="true"
-        android:hint="@string/add_hint" />
+        android:hint="@string/add_hint"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/add_task_btn"
