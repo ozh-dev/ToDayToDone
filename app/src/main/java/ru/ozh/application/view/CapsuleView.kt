@@ -22,10 +22,10 @@ class CapsuleView @JvmOverloads constructor(
             isAntiAlias = true
         }
 
-    private val capsuleWidth = 16f.dp()
-    private val capsuleHeight = 32f.dp()
+    private val capsuleWidth = 10f.dp()
+    private val capsuleHeight = 24f.dp()
     private val radius = 15f.dp()
-    private val strokeWidth = 4f.dp()
+    private val strokeWidth = 2f.dp()
 
     init {
         initAttrs()

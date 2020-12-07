@@ -26,12 +26,7 @@
         android:text="Roboto Font"
         android:textAppearance="@style/Text.Light" />
 
-    <Button
-        android:id="@+id/add_task_btn"
-        style="@style/Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add" />
+    <include layout="@layout/layout_add_bar" />
 
     <ru.ozh.application.view.ColorChooseView
         android:id="@+id/color_choose_view"
@@ -41,7 +36,8 @@
         android:background="@drawable/bg_capsule_btn_shape"
         android:elevation="8dp"
         android:translationX="-70dp"
-        android:translationY="70dp">
+        android:translationY="70dp"
+        android:visibility="gone">
 
         <ru.ozh.application.view.CapsuleView
             android:layout_width="40dp"

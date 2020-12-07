@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_gravity="bottom"
+    android:background="@color/white"
+    android:clipToPadding="false"
+    android:paddingHorizontal="8dp">
+
+    <ru.ozh.application.view.CapsuleView
+        android:id="@+id/open_priority_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        app:cv_color="@color/gray_"
+        app:cv_is_stroke="true" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toStartOf="@id/add_task_btn"
+        android:layout_toEndOf="@id/open_priority_btn"
+        android:background="@null"
+        android:singleLine="true"
+        android:hint="@string/add_hint" />
+
+    <Button
+        android:id="@+id/add_task_btn"
+        style="@style/Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:text="@string/add_btn"
+        android:textColor="@color/petroleum_blue" />
+</RelativeLayout>

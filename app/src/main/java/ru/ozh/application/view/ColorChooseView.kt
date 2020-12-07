@@ -6,17 +6,14 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import android.view.ViewAnimationUtils
-import android.view.animation.OvershootInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.ViewAnimator
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import ru.ozh.application.R
-import ru.ozh.application.utils.UiUtils.dp
 import java.lang.Math.toRadians
 import kotlin.math.cos
 import kotlin.math.hypot
@@ -75,8 +72,9 @@ class ColorChooseView @JvmOverloads constructor(
     }
 
     private fun createRevealAnimation(isReverse: Boolean): Animator {
-        val cx = width / 2
-        val cy = height / 2
+        val (layoutWidth, layoutHeight) = layoutParams.width to layoutParams.height
+        val cx = layoutWidth / 2
+        val cy = layoutHeight / 2
 
         val finalRadius = hypot(cx.toDouble(), cy.toDouble()).toFloat()
 
