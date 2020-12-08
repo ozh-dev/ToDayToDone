@@ -2,20 +2,28 @@ package ru.ozh.application.view
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import ru.ozh.application.R
+import ru.ozh.application.domain.Common.getPriorityColorRes
+import ru.ozh.application.domain.Priority
+import ru.ozh.application.domain.Priority.*
 import ru.ozh.application.utils.UiUtils.dp
 
-class CapsuleView @JvmOverloads constructor(
+class PriorityView @JvmOverloads constructor(
     context: Context,
     val attributeSet: AttributeSet? = null,
     defStyle: Int = 0
 ) : View(context, attributeSet, defStyle) {
+
+    var priority: Priority = UNKNOWN
+        set(value) {
+            field = value
+            invalidateView()
+        }
 
     private val paint: Paint = Paint()
         .apply {
@@ -29,7 +37,11 @@ class CapsuleView @JvmOverloads constructor(
 
     init {
         initAttrs()
-        background = ResourcesCompat.getDrawable(resources, R.drawable.bg_capsule_btn_borderless, context.theme)
+        background = ResourcesCompat.getDrawable(
+            resources,
+            R.drawable.bg_capsule_btn_borderless,
+            context.theme
+        )
         paint.strokeWidth = strokeWidth
 
         isClickable = true
@@ -49,11 +61,19 @@ class CapsuleView @JvmOverloads constructor(
 
     private fun initAttrs() {
         context.withStyledAttributes(attributeSet, R.styleable.CapsuleView) {
-            val isStroke = getBoolean(R.styleable.CapsuleView_cv_is_stroke, false)
-            val color = getColor(R.styleable.CapsuleView_cv_color, Color.WHITE)
-
-            paint.color = color
-            paint.style = if(isStroke) Paint.Style.STROKE else Paint.Style.FILL
+            val priorityValue = getInt(R.styleable.CapsuleView_cv_priority, Priority.UNKNOWN.ordinal)
+            priority = Priority.values()[priorityValue]
         }
+    }
+
+    private fun invalidateView() {
+        val style = when(priority) {
+            LOW, MIDDLE, HIGH -> Paint.Style.FILL
+            UNKNOWN -> Paint.Style.STROKE
+        }
+        val color = context.getColor(getPriorityColorRes(priority))
+        paint.style = style
+        paint.color = color
+        invalidate()
     }
 }

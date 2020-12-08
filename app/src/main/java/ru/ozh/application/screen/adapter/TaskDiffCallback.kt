@@ -1,8 +1,9 @@
-package ru.ozh.application.screen
+package ru.ozh.application.screen.adapter
 
 import androidx.recyclerview.widget.DiffUtil
+import ru.ozh.application.domain.Task
 
-class TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
+object TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
 
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
         return oldItem.id == newItem.id

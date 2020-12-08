@@ -10,10 +10,12 @@ import android.widget.FrameLayout
 import android.widget.ImageButton
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import ru.ozh.application.R
+import ru.ozh.application.utils.UiUtils.dp
 import java.lang.Math.toRadians
 import kotlin.math.cos
 import kotlin.math.hypot
@@ -21,9 +23,9 @@ import kotlin.math.max
 import kotlin.math.sin
 
 
-class ColorChooseView @JvmOverloads constructor(
+class PriorityChooseView @JvmOverloads constructor(
     context: Context,
-    val attributeSet: AttributeSet? = null,
+    attributeSet: AttributeSet? = null,
     defStyle: Int = 0
 ) : FrameLayout(context, attributeSet, defStyle) {
 
@@ -32,6 +34,8 @@ class ColorChooseView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.layout_color_choice, this)
+        background = ContextCompat.getDrawable(context, R.drawable.bg_capsule_btn_shape)
+        elevation = 8f.dp()
         closeBtn = findViewById(R.id.close_btn)
 
         closeBtn.setOnClickListener {
