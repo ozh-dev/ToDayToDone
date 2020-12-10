@@ -8,52 +8,40 @@
     android:orientation="vertical"
     tools:context=".screen.TasksActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roboto Font"
-        android:textAppearance="@style/Text.Regular" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roboto Font"
-        android:textAppearance="@style/Text.Medium" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roboto Font"
-        android:textAppearance="@style/Text.Light" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasks_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <include layout="@layout/layout_add_bar" />
 
-    <ru.ozh.application.view.ColorChooseView
+    <ru.ozh.application.view.PriorityChooseView
         android:id="@+id/color_choose_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/bg_capsule_btn_shape"
-        android:elevation="8dp"
         android:translationX="-70dp"
         android:translationY="70dp"
         android:visibility="gone">
 
-        <ru.ozh.application.view.CapsuleView
+        <ru.ozh.application.view.PriorityView
+            android:id="@+id/low_priority_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:cv_color="@color/gray" />
+            app:cv_priority="low" />
 
-        <ru.ozh.application.view.CapsuleView
+        <ru.ozh.application.view.PriorityView
+            android:id="@+id/middle_priority_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:cv_color="@color/petroleum_blue" />
+            app:cv_priority="middle" />
 
-        <ru.ozh.application.view.CapsuleView
+        <ru.ozh.application.view.PriorityView
+            android:id="@+id/high_priority_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:cv_color="@color/red" />
+            app:cv_priority="high" />
 
-    </ru.ozh.application.view.ColorChooseView>
+    </ru.ozh.application.view.PriorityChooseView>
 
 </FrameLayout>

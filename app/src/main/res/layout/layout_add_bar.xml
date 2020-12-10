@@ -8,22 +8,22 @@
     android:clipToPadding="false"
     android:paddingHorizontal="8dp">
 
-    <ru.ozh.application.view.CapsuleView
+    <ru.ozh.application.view.PriorityView
         android:id="@+id/open_priority_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"
-        app:cv_color="@color/gray_"
-        app:cv_is_stroke="true" />
+        app:cv_priority="unknown"/>
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/task_input_et"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toStartOf="@id/add_task_btn"
         android:layout_toEndOf="@id/open_priority_btn"
         android:background="@null"
-        android:singleLine="true"
-        android:hint="@string/add_hint" />
+        android:hint="@string/add_hint"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/add_task_btn"
