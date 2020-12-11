@@ -13,6 +13,7 @@ class TaskViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemV
     private val textTv = itemView.findViewById<TextView>(R.id.text_tv)
 
     fun bind(task: Task) {
+        textTv.paint.isStrikeThruText = task.hasDone
         textTv.text = task.text
         priorityView.priority = task.priority
     }

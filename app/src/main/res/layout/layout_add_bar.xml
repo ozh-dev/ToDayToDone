@@ -13,7 +13,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"
-        app:cv_priority="unknown"/>
+        app:cv_priority="low"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/task_input_et"
