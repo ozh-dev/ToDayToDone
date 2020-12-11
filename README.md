@@ -1,2 +1,2 @@
 # ToDayToDone
-Project for Android Study Jam. December 2020
+Project for Android Study Jam. Voronezh. December 2020

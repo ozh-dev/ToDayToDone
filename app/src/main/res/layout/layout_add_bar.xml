@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_bar_layout"
     android:layout_width="match_parent"
     android:layout_height="56dp"
     android:layout_gravity="bottom"
@@ -13,7 +14,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_centerVertical="true"
-        app:cv_priority="unknown"/>
+        app:cv_priority="low"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/task_input_et"

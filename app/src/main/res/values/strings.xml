@@ -3,4 +3,8 @@
     <string name="add_btn">Add</string>
     <string name="add_hint">What we have to do?</string>
     <string name="ignore_tag">ignore</string>
+    <string name="input_task_message">Please, type task!</string>
+    <string name="sort_low_text">Low</string>
+    <string name="sort_middle_text">Middle</string>
+    <string name="sort_high_text">High</string>
 </resources>

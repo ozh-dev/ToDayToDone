@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/color_choose_view"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:paddingVertical="8dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/low_sort_btn"
+        android:background="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ru.ozh.application.view.PriorityView
+            android:id="@+id/low_priority_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cv_priority="low" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_low_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/middle_sort_btn"
+        android:background="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ru.ozh.application.view.PriorityView
+            android:id="@+id/middle_priority_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cv_priority="middle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_middle_text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/high_sort_btn"
+        android:background="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ru.ozh.application.view.PriorityView
+            android:id="@+id/high_priority_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cv_priority="high" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_high_text" />
+
+    </LinearLayout>
+
+</LinearLayout>

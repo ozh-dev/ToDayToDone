@@ -11,9 +11,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasks_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="56dp"
+        android:paddingBottom="72dp" />
 
     <include layout="@layout/layout_add_bar" />
+
+    <include layout="@layout/layout_tool_bar" />
 
     <ru.ozh.application.view.PriorityChooseView
         android:id="@+id/color_choose_view"

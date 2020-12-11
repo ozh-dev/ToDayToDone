@@ -4,10 +4,17 @@
     <color name="white">#FFFFFFFF</color> //строка ввода
     <color name="white_90">#f5f5f5</color>//фон
 
-    <color name="vermilion">#D32F2F</color>
+    <!--  PriorityView  -->
+    <color name="red">#F44336</color>
     <color name="petroleum_blue">#65B9C9</color>
     <color name="gray">#CBD3D9</color>
-    <color name="gray_">#AEAEAE</color>
-    <color name="red">#F44336</color>
-    <color name="green">#a9e26f</color> //done
+
+    <!--  Фон свайпа  -->
+    <color name="red_1">#FF5722</color>
+    <color name="green">#a9e26f</color>
+
+    <!--  Цвет текста  -->
+    <color name="text">#A8B7C2</color>
+    <color name="text_1">#7992A4</color>
+    <color name="text_2">#537085</color>
 </resources>

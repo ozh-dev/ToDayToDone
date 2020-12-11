@@ -7,8 +7,24 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
     </style>
 
+    <style name="Text.Medium.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Text.Medium.16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text.Medium.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="Text.Regular">
         <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="Text.Regular.16">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Text.Light">
