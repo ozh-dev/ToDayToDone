@@ -3,7 +3,6 @@ package ru.ozh.application.screen
 import android.content.Context
 import android.graphics.*
 import android.view.View
-import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.ItemTouchHelper.*
@@ -21,7 +20,7 @@ class SwipeController(
     private val iconOffset = 16f.dp()
     private val threshold = 72f.dp()
     private val cornerRadius = 50f.dp()
-    private val redColor = context.getColor(R.color.red_)
+    private val redColor = context.getColor(R.color.red_1)
     private val greenColor = context.getColor(R.color.green)
     private val doneIconBtm = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_check, null)?.toBitmap()
     private val removeIconBtm = ResourcesCompat.getDrawable(context.resources, R.drawable.ic_remove, null)?.toBitmap()

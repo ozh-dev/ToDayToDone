@@ -18,6 +18,8 @@
 
     <include layout="@layout/layout_add_bar" />
 
+    <include layout="@layout/layout_tool_bar" />
+
     <ru.ozh.application.view.PriorityChooseView
         android:id="@+id/color_choose_view"
         android:layout_width="200dp"

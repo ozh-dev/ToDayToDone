@@ -12,32 +12,6 @@ class TaskViewModel : ViewModel() {
     val tasks: MutableLiveData<List<Task>> = MutableLiveData<List<Task>>()
     private val internalTasks: MutableList<Task> = mutableListOf()
 
-    init {
-        internalTasks.add(
-            Task(
-                id = UUID.randomUUID().toString(),
-                text = "123456",
-                priority = Priority.HIGH
-            )
-        )
-
-        internalTasks.add(
-            Task(
-                id = UUID.randomUUID().toString(),
-                text = "456789",
-                priority = Priority.LOW
-            )
-        )
-
-        internalTasks.add(
-            Task(
-                id = UUID.randomUUID().toString(),
-                text = "789123",
-                priority = Priority.MIDDLE
-            )
-        )
-    }
-
     fun addTask(priority: Priority, text: String) {
         val task = Task(
             id = UUID.randomUUID().toString(),
@@ -46,6 +20,14 @@ class TaskViewModel : ViewModel() {
         )
         internalTasks.add(task)
         emit()
+    }
+
+    fun doTaskAction(adapterPosition: Int, swipeAction: SwipeAction) {
+        when(swipeAction) {
+            SwipeAction.REMOVE -> removeTask(adapterPosition)
+            SwipeAction.DONE -> doneTaskAt(adapterPosition)
+            SwipeAction.UNKNOWN -> Unit
+        }
     }
 
     private fun removeTask(position: Int) {
@@ -68,13 +50,5 @@ class TaskViewModel : ViewModel() {
                             addAll(internalTasks)
                         }
         )
-    }
-
-    fun doTaskAction(adapterPosition: Int, swipeAction: SwipeAction) {
-        when(swipeAction) {
-            SwipeAction.REMOVE -> removeTask(adapterPosition)
-            SwipeAction.DONE -> doneTaskAt(adapterPosition)
-            SwipeAction.UNKNOWN -> Unit
-        }
     }
 }

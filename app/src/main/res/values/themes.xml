@@ -8,6 +8,7 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/petroleum_blue</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/gray</item>
         <item name="android:windowBackground">@color/white_90</item>
     </style>
 </resources>

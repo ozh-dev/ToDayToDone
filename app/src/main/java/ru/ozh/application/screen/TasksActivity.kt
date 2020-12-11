@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.Button
+import android.widget.PopupMenu
+import android.widget.PopupWindow
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.PopupWindowCompat
 import androidx.recyclerview.widget.*
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import ru.ozh.application.R
 import ru.ozh.application.screen.adapter.TasksAdapter
@@ -71,6 +75,14 @@ class TasksActivity : AppCompatActivity() {
 
     private fun initAddBar() {
         addBtn.setOnClickListener {
+
+            val isEmpty = inputEditText.text?.isEmpty() == true
+
+            if(isEmpty) {
+                showEmptyTaskMessage()
+                return@setOnClickListener
+            }
+
             vm.addTask(
                     priority = openPriorityPickerBtn.priority,
                     text = inputEditText.text.toString()
@@ -81,6 +93,14 @@ class TasksActivity : AppCompatActivity() {
         openPriorityPickerBtn.setOnClickListener {
             priorityPickerView.show()
         }
+    }
+
+    private fun showEmptyTaskMessage() {
+        Snackbar.make(inputEditText, R.string.input_task_message, Snackbar.LENGTH_SHORT)
+                .apply {
+                    setAnchorView(R.id.add_bar_layout)
+                    show()
+                }
     }
 
     private fun initPriorityButtons() {
@@ -94,6 +114,11 @@ class TasksActivity : AppCompatActivity() {
         lowPriorityPickerBtn.setOnClickListener(priorityClickListener)
         middlePriorityPickerBtn.setOnClickListener(priorityClickListener)
         highPriorityPickerBtn.setOnClickListener(priorityClickListener)
+    }
+
+    private fun initPopupWindows() {
+        val popupWindow = PopupWindow(this)
+//        popupWindow.setContentView()
     }
 
     private fun scrollToBottom(positionStart: Int, itemCount: Int) {
