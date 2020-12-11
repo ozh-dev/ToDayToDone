@@ -93,12 +93,12 @@ class SwipeController(
         }
 
         if (isLtr) {
-            if (abs(deltaX) == threshold) {
+            if (abs(deltaX) == threshold && isCurrentlyActive) {
                 swipeAction = SwipeAction.REMOVE
             }
             drawRemove(canvas, viewHolder.itemView, deltaX.toInt())
         } else {
-            if (abs(deltaX) == threshold) {
+            if (abs(deltaX) == threshold && isCurrentlyActive) {
                 swipeAction = SwipeAction.DONE
             }
             drawDone(canvas, viewHolder.itemView, deltaX.toInt())

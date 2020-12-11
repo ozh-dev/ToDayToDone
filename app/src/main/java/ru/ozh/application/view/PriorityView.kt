@@ -43,8 +43,6 @@ class PriorityView @JvmOverloads constructor(
             context.theme
         )
         paint.strokeWidth = strokeWidth
-
-        isClickable = true
     }
 
     override fun onDraw(canvas: Canvas) {

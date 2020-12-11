@@ -1,20 +1,28 @@
 package ru.ozh.application.screen
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.DisplayMetrics
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.PopupWindow
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.widget.PopupWindowCompat
 import androidx.recyclerview.widget.*
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import ru.ozh.application.R
+import ru.ozh.application.domain.Priority
 import ru.ozh.application.screen.adapter.TasksAdapter
 import ru.ozh.application.screen.adapter.doOnItemRangeInserted
+import ru.ozh.application.utils.UiUtils.dp
 import ru.ozh.application.view.PriorityChooseView
 import ru.ozh.application.view.PriorityView
 
@@ -25,26 +33,31 @@ class TasksActivity : AppCompatActivity() {
 
     private lateinit var tasksRv: RecyclerView
     private lateinit var addBtn: Button
+    private lateinit var sortBtn: ImageButton
     private lateinit var inputEditText: TextInputEditText
     private lateinit var openPriorityPickerBtn: PriorityView
     private lateinit var lowPriorityPickerBtn: PriorityView
     private lateinit var middlePriorityPickerBtn: PriorityView
     private lateinit var highPriorityPickerBtn: PriorityView
     private lateinit var priorityPickerView: PriorityChooseView
+    private lateinit var popupWindow: PopupWindow
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tasks)
         initViews()
+        initPopupWindows()
         initPriorityButtons()
         initAddBar()
         initRecyclerView()
         subscribeViewModel()
+
     }
 
     private fun initViews() {
         tasksRv = findViewById(R.id.tasks_rv)
         addBtn = findViewById(R.id.add_task_btn)
+        sortBtn = findViewById(R.id.sort_btn)
         inputEditText = findViewById(R.id.task_input_et)
         openPriorityPickerBtn = findViewById(R.id.open_priority_btn)
         lowPriorityPickerBtn = findViewById(R.id.low_priority_btn)
@@ -78,7 +91,7 @@ class TasksActivity : AppCompatActivity() {
 
             val isEmpty = inputEditText.text?.isEmpty() == true
 
-            if(isEmpty) {
+            if (isEmpty) {
                 showEmptyTaskMessage()
                 return@setOnClickListener
             }
@@ -117,8 +130,31 @@ class TasksActivity : AppCompatActivity() {
     }
 
     private fun initPopupWindows() {
-        val popupWindow = PopupWindow(this)
-//        popupWindow.setContentView()
+        popupWindow = PopupWindow(this)
+        val view = LayoutInflater.from(this).inflate(R.layout.layout_sort, null, false)
+        popupWindow.contentView = view
+        popupWindow.width = 120f.dp().toInt()
+        popupWindow.isOutsideTouchable = true
+        popupWindow.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.bg_rect_round_12))
+
+        view.findViewById<ViewGroup>(R.id.low_sort_btn).setOnClickListener {
+            vm.applySort(Priority.LOW)
+            popupWindow.dismiss()
+        }
+
+        view.findViewById<ViewGroup>(R.id.middle_sort_btn).setOnClickListener {
+            vm.applySort(Priority.MIDDLE)
+            popupWindow.dismiss()
+        }
+
+        view.findViewById<ViewGroup>(R.id.high_sort_btn).setOnClickListener {
+            vm.applySort(Priority.HIGH)
+            popupWindow.dismiss()
+        }
+
+        sortBtn.setOnClickListener {
+            popupWindow.showAsDropDown(sortBtn)
+        }
     }
 
     private fun scrollToBottom(positionStart: Int, itemCount: Int) {

@@ -10,6 +10,7 @@ import java.util.*
 class TaskViewModel : ViewModel() {
 
     val tasks: MutableLiveData<List<Task>> = MutableLiveData<List<Task>>()
+    private var sortPriority: Priority = Priority.UNKNOWN
     private val internalTasks: MutableList<Task> = mutableListOf()
 
     fun addTask(priority: Priority, text: String) {
@@ -30,6 +31,11 @@ class TaskViewModel : ViewModel() {
         }
     }
 
+    fun applySort(priority: Priority) {
+        sortPriority = priority
+        emit()
+    }
+
     private fun removeTask(position: Int) {
         internalTasks.removeAt(position)
         emit()
@@ -47,7 +53,7 @@ class TaskViewModel : ViewModel() {
         tasks.postValue(
                 mutableListOf<Task>()
                         .apply {
-                            addAll(internalTasks)
+                            addAll(internalTasks.sortedByDescending { it.priority.key == sortPriority.key })
                         }
         )
     }
