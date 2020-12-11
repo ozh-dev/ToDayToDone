@@ -50,10 +50,13 @@ class TaskViewModel : ViewModel() {
     }
 
     private fun emit() {
+        val tempList = internalTasks.sortedByDescending { it.priority.key == sortPriority.key }
+        internalTasks.clear()
+        internalTasks.addAll(tempList)
         tasks.postValue(
                 mutableListOf<Task>()
                         .apply {
-                            addAll(internalTasks.sortedByDescending { it.priority.key == sortPriority.key })
+                            addAll(internalTasks)
                         }
         )
     }
