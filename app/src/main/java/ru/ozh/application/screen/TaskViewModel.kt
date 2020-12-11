@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.ozh.application.domain.Priority
 import ru.ozh.application.domain.Task
-import java.text.FieldPosition
 import java.util.*
 
 class TaskViewModel : ViewModel() {
