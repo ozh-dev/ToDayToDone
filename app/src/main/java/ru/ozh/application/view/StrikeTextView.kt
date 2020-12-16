@@ -14,19 +14,21 @@ class StrikeTextView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
 ) : AppCompatTextView(context, attrs, defStyle) {
 
-    private val paint = Paint()
-            .apply {
-                isAntiAlias = true
-                color = ContextCompat.getColor(context, R.color.text_2)
-                strokeWidth = 2f.dp()
-            }
-
+    //region params
     var hasStriked = false
         set(value) {
             if (field == value) return
             field = value
             invalidate()
         }
+
+    private val paint = Paint()
+            .apply {
+                isAntiAlias = true
+                color = ContextCompat.getColor(context, R.color.text_2)
+                strokeWidth = 2f.dp()
+            }
+    //endregion
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
