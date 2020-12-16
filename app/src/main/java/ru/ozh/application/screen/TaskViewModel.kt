@@ -8,11 +8,13 @@ import java.util.*
 
 class TaskViewModel : ViewModel() {
 
+    //region params
     val tasks: MutableLiveData<List<Task>> = MutableLiveData<List<Task>>()
     private var sortPriority: Priority = Priority.UNKNOWN
     private val internalTasks: MutableList<Task> = mutableListOf()
+    //endregion
 
-    fun addTask(priority: Priority, text: String) {
+    fun onTaskTask(priority: Priority, text: String) {
         val task = Task(
             id = UUID.randomUUID().toString(),
             text = text,
@@ -22,20 +24,20 @@ class TaskViewModel : ViewModel() {
         emit()
     }
 
-    fun doTaskAction(adapterPosition: Int, swipeAction: SwipeAction) {
+    fun onSwipe(adapterPosition: Int, swipeAction: SwipeAction) {
         when(swipeAction) {
-            SwipeAction.REMOVE -> removeTask(adapterPosition)
+            SwipeAction.REMOVE -> removeTaskAt(adapterPosition)
             SwipeAction.DONE -> doneTaskAt(adapterPosition)
             SwipeAction.UNKNOWN -> Unit
         }
     }
 
-    fun applySort(priority: Priority) {
+    fun onSortChange(priority: Priority) {
         sortPriority = priority
         emit()
     }
 
-    private fun removeTask(position: Int) {
+    private fun removeTaskAt(position: Int) {
         internalTasks.removeAt(position)
         emit()
     }

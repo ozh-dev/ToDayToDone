@@ -14,7 +14,6 @@ class TaskViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemV
 
     fun bind(task: Task) {
         textTv.hasStriked = task.hasDone
-
         textTv.text = task.text
         priorityView.priority = task.priority
     }

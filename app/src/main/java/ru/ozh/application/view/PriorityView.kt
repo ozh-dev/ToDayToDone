@@ -15,25 +15,28 @@ import ru.ozh.application.utils.UiUtils.dp
 
 class PriorityView @JvmOverloads constructor(
     context: Context,
-    val attributeSet: AttributeSet? = null,
+    private val attributeSet: AttributeSet? = null,
     defStyle: Int = 0
 ) : View(context, attributeSet, defStyle) {
 
+    //region params
     var priority: Priority = UNKNOWN
         set(value) {
             field = value
-            invalidateView()
+            paint.color = context.getColor(getPriorityColorRes(field))
+            invalidate()
         }
 
     private val paint: Paint = Paint()
         .apply {
             isAntiAlias = true
+            style = Paint.Style.FILL
         }
 
     private val capsuleWidth = 10f.dp()
     private val capsuleHeight = 24f.dp()
     private val radius = 15f.dp()
-    private val strokeWidth = 2f.dp()
+    //endregion
 
     init {
         initAttrs()
@@ -42,7 +45,6 @@ class PriorityView @JvmOverloads constructor(
             R.drawable.bg_capsule_btn_borderless,
             context.theme
         )
-        paint.strokeWidth = strokeWidth
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -62,16 +64,5 @@ class PriorityView @JvmOverloads constructor(
             val priorityValue = getInt(R.styleable.CapsuleView_cv_priority, Priority.UNKNOWN.ordinal)
             priority = Priority.values()[priorityValue]
         }
-    }
-
-    private fun invalidateView() {
-        val style = when(priority) {
-            LOW, MIDDLE, HIGH -> Paint.Style.FILL
-            UNKNOWN -> Paint.Style.STROKE
-        }
-        val color = context.getColor(getPriorityColorRes(priority))
-        paint.style = style
-        paint.color = color
-        invalidate()
     }
 }

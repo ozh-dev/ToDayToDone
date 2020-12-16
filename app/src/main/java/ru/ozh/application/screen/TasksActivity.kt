@@ -24,6 +24,7 @@ import ru.ozh.application.view.PriorityView
 
 class TasksActivity : AppCompatActivity() {
 
+    //region params
     private val tasksAdapter = TasksAdapter()
     private val vm: TaskViewModel by viewModels()
 
@@ -37,6 +38,7 @@ class TasksActivity : AppCompatActivity() {
     private lateinit var highPriorityPickerBtn: PriorityView
     private lateinit var priorityPickerView: PriorityChooseView
     private lateinit var popupWindow: PopupWindow
+    //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,54 +64,32 @@ class TasksActivity : AppCompatActivity() {
         priorityPickerView = findViewById(R.id.color_choose_view)
     }
 
-    private fun subscribeViewModel() {
-        vm.tasks.observe(this, tasksAdapter::submitList)
-    }
+    private fun initPopupWindows() {
+        popupWindow = PopupWindow(this)
+        val view = LayoutInflater.from(this).inflate(R.layout.layout_sort, null, false)
+        popupWindow.contentView = view
+        popupWindow.width = 120f.dp().toInt()
+        popupWindow.isOutsideTouchable = true
+        popupWindow.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.bg_rect_round_12))
 
-    private fun initRecyclerView() {
-        with(tasksRv) {
-            layoutManager = LinearLayoutManager(this@TasksActivity)
-            adapter = tasksAdapter
-            (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
-            val swipeController = SwipeController(this@TasksActivity
-            ) { adapterPosition, swipeAction ->
-                postDelayed({
-                    vm.doTaskAction(adapterPosition, swipeAction)
-                }, 250)
-            }
-            ItemTouchHelper(swipeController).attachToRecyclerView(this)
-            tasksRv.adapter?.doOnItemRangeInserted(this@TasksActivity::scrollToBottom)
-        }
-    }
-
-    private fun initAddBar() {
-        addBtn.setOnClickListener {
-
-            val isEmpty = inputEditText.text?.isEmpty() == true
-
-            if (isEmpty) {
-                showEmptyTaskMessage()
-                return@setOnClickListener
-            }
-
-            vm.addTask(
-                    priority = openPriorityPickerBtn.priority,
-                    text = inputEditText.text.toString()
-            )
-            inputEditText.editableText.clear()
+        view.findViewById<ViewGroup>(R.id.low_sort_btn).setOnClickListener {
+            vm.onSortChange(Priority.LOW)
+            popupWindow.dismiss()
         }
 
-        openPriorityPickerBtn.setOnClickListener {
-            priorityPickerView.show()
+        view.findViewById<ViewGroup>(R.id.middle_sort_btn).setOnClickListener {
+            vm.onSortChange(Priority.MIDDLE)
+            popupWindow.dismiss()
         }
-    }
 
-    private fun showEmptyTaskMessage() {
-        Snackbar.make(inputEditText, R.string.input_task_message, Snackbar.LENGTH_SHORT)
-                .apply {
-                    setAnchorView(R.id.add_bar_layout)
-                    show()
-                }
+        view.findViewById<ViewGroup>(R.id.high_sort_btn).setOnClickListener {
+            vm.onSortChange(Priority.HIGH)
+            popupWindow.dismiss()
+        }
+
+        sortBtn.setOnClickListener {
+            popupWindow.showAsDropDown(sortBtn)
+        }
     }
 
     private fun initPriorityButtons() {
@@ -125,32 +105,54 @@ class TasksActivity : AppCompatActivity() {
         highPriorityPickerBtn.setOnClickListener(priorityClickListener)
     }
 
-    private fun initPopupWindows() {
-        popupWindow = PopupWindow(this)
-        val view = LayoutInflater.from(this).inflate(R.layout.layout_sort, null, false)
-        popupWindow.contentView = view
-        popupWindow.width = 120f.dp().toInt()
-        popupWindow.isOutsideTouchable = true
-        popupWindow.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.bg_rect_round_12))
+    private fun initAddBar() {
+        addBtn.setOnClickListener {
 
-        view.findViewById<ViewGroup>(R.id.low_sort_btn).setOnClickListener {
-            vm.applySort(Priority.LOW)
-            popupWindow.dismiss()
+            val isEmpty = inputEditText.text?.isEmpty() == true
+
+            if (isEmpty) {
+                showEmptyTaskMessage()
+                return@setOnClickListener
+            }
+
+            vm.onTaskTask(
+                    priority = openPriorityPickerBtn.priority,
+                    text = inputEditText.text.toString()
+            )
+            inputEditText.editableText.clear()
         }
 
-        view.findViewById<ViewGroup>(R.id.middle_sort_btn).setOnClickListener {
-            vm.applySort(Priority.MIDDLE)
-            popupWindow.dismiss()
+        openPriorityPickerBtn.setOnClickListener {
+            priorityPickerView.show()
         }
+    }
 
-        view.findViewById<ViewGroup>(R.id.high_sort_btn).setOnClickListener {
-            vm.applySort(Priority.HIGH)
-            popupWindow.dismiss()
+    private fun initRecyclerView() {
+        with(tasksRv) {
+            layoutManager = LinearLayoutManager(this@TasksActivity)
+            adapter = tasksAdapter
+            (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+            val swipeController = SwipeController(this@TasksActivity
+            ) { adapterPosition, swipeAction ->
+                postDelayed({
+                    vm.onSwipe(adapterPosition, swipeAction)
+                }, 250)
+            }
+            ItemTouchHelper(swipeController).attachToRecyclerView(this)
+            tasksRv.adapter?.doOnItemRangeInserted(this@TasksActivity::scrollToBottom)
         }
+    }
 
-        sortBtn.setOnClickListener {
-            popupWindow.showAsDropDown(sortBtn)
-        }
+    private fun subscribeViewModel() {
+        vm.tasks.observe(this, tasksAdapter::submitList)
+    }
+
+    private fun showEmptyTaskMessage() {
+        Snackbar.make(inputEditText, R.string.input_task_message, Snackbar.LENGTH_SHORT)
+                .apply {
+                    setAnchorView(R.id.add_bar_layout)
+                    show()
+                }
     }
 
     private fun scrollToBottom(positionStart: Int, itemCount: Int) {

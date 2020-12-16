@@ -5,6 +5,7 @@ import android.graphics.*
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.RecyclerView
 import ru.ozh.application.R
@@ -15,8 +16,9 @@ import kotlin.math.abs
 class SwipeController(
         private val context: Context,
         private val callback: (adapterPosition: Int, swipeAction: SwipeAction) -> Unit
-) : Callback() {
+) : ItemTouchHelper.Callback() {
 
+    //region params
     private val iconOffset = 16f.dp()
     private val threshold = 72f.dp()
     private val cornerRadius = 50f.dp()
@@ -29,6 +31,7 @@ class SwipeController(
 
     private var adapterPosition: Int = RecyclerView.NO_POSITION
     private var swipeAction: SwipeAction = SwipeAction.UNKNOWN
+    //endregion
 
     override fun getMovementFlags(
             recyclerView: RecyclerView,
@@ -38,11 +41,7 @@ class SwipeController(
         return makeMovementFlags(0, swipeFlags)
     }
 
-    override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
-    ): Boolean {
+    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
         return false
     }
 
@@ -75,15 +74,7 @@ class SwipeController(
         //do nothing
     }
 
-    override fun onChildDraw(
-            canvas: Canvas,
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            dX: Float,
-            dY: Float,
-            actionState: Int,
-            isCurrentlyActive: Boolean
-    ) {
+    override fun onChildDraw(canvas: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         val isLtr = 0 < dX
 
         val deltaX = if (isLtr) {

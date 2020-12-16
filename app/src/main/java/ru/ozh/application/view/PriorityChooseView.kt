@@ -29,8 +29,10 @@ class PriorityChooseView @JvmOverloads constructor(
     defStyle: Int = 0
 ) : FrameLayout(context, attributeSet, defStyle) {
 
+    //region params
     private val closeBtn: ImageButton
     private val ignoreTag = context.resources.getString(R.string.ignore_tag)
+    //endregion
 
     init {
         inflate(context, R.layout.layout_color_choice, this)
