@@ -9,6 +9,7 @@ Project for Android Study Jam. Voronezh. December 2020
 3. Custom View
 4. Custom PopUp
 5. Swipe RecyclerViews' Item with [ItemTouchHelper.Callback](https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/ItemTouchHelper.Callback)**
+6. Nice animations
 
 
 Items list | Done swipe | Remove swipe | Color picker | Sort popup
